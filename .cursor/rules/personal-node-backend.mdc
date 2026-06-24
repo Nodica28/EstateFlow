@@ -1,0 +1,11 @@
+---
+description: Node.js APIs workers scripts route handlers middleware server actions
+globs: "**/api/**/*.{ts,js,mts,mjs,cjs},**/server/**/*.{ts,js,mts,mjs,cjs},**/backend/**/*.{ts,js,mts,mjs,cjs},**/workers/**/*.{ts,js,mts,mjs,cjs},**/scripts/**/*.{ts,js,mts,mjs,cjs},**/route.{ts,js},**/middleware.{ts,js},**/actions/**/*.{ts,js}"
+alwaysApply: false
+---
+
+# Node.js
+
+- Prefer **async/await** over raw Promise chains; centralize error handling at boundaries (HTTP handlers, CLI entrypoints).
+- Validate inputs at edges (HTTP, IPC, env) with a schema library when the project already uses one.
+- Never log secrets; redact tokens and PII in structured logs.

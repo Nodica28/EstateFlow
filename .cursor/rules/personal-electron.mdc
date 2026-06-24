@@ -1,0 +1,11 @@
+---
+description: Electron main preload renderer IPC and security defaults
+globs: "**/electron/**/*.{ts,js,mts,mjs,cjs},**/*preload*.{ts,js}"
+alwaysApply: false
+---
+
+# Electron
+
+- Never enable nodeIntegration in renderer with untrusted content; prefer contextIsolation true, sandbox true where viable, and preload scripts exposing a narrow contextBridge API.
+- Keep IPC payloads typed (shared types module); validate messages like external input.
+- Separate main, preload, and renderer concerns; no Node APIs directly from renderer unless architected and audited.

@@ -1,0 +1,26 @@
+---
+description: React, Next.js (App Router), and Tailwind UI patterns
+globs: "**/*.{tsx,jsx,css},**/tailwind.config.{ts,js,mjs,cjs}"
+alwaysApply: false
+---
+
+# React
+
+- **Functional components only**. Extract **`use*` hooks** for reusable stateful logic; keep components mostly declarative.
+- Prefer **composition** (children, slots, small subcomponents) over prop drilling; use context sparingly and only for stable, narrowly scoped data.
+- **Keys** must be stable IDs, not array indices, when lists reorder or filter.
+- **Effects**: declare complete dependency arrays; avoid suppressing exhaustive-deps without a short comment explaining the contract.
+
+# Next.js (App Router unless the repo uses Pages)
+
+- **Server Components by default**. Add **`"use client"`** only for interactivity, browser APIs, or hooks; place it at the top of the leaf file that needs it.
+- **Data fetching**: prefer **server-side** fetching in Server Components or **Route Handlers** for mutations; avoid exposing secrets to the client.
+- **Caching**: be explicit about **`fetch` cache/revalidate** or tag-based revalidation when requirements are non-default; document surprising cache behavior in code comments.
+- **Metadata**: colocate `generateMetadata` / static `metadata` with routes; keep SEO fields accurate.
+
+# Tailwind CSS
+
+- Prefer **utility classes in JSX**; extract **components** or **`@apply` in layered CSS** only when a repeated cluster hurts readability.
+- Follow a consistent **order** (layout to box to typography to visual to state) or rely on Prettier's Tailwind plugin if configured.
+- Use **design tokens** via `theme` / CSS variables when the project has them; avoid magic numbers duplicated across many files.
+- Respect **accessibility**: focus rings (`ring`, `outline`), contrast, and motion (`motion-reduce` variants when animations are heavy).

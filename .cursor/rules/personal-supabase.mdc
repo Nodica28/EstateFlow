@@ -1,0 +1,11 @@
+---
+description: Supabase RLS clients migrations and generated types
+globs: "**/supabase/**/*.{sql,ts,js},**/*.sql"
+alwaysApply: false
+---
+
+# Supabase
+
+- Treat Row Level Security (RLS) as mandatory for user-facing tables; policies must match product rules, not allow-all for dev.
+- Use the server-side Supabase client (service role or cookie-based user session) for privileged work; keep anon key usage client-side and RLS-backed.
+- Prefer SQL migrations for schema changes; keep generated types in sync when the repo uses them.

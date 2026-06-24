@@ -1,0 +1,10 @@
+---
+description: HTML semantics, accessibility, and SEO-oriented structure
+globs: "**/*.{html,htm}"
+alwaysApply: false
+---
+
+# HTML
+
+- Semantic structure (`main`, `nav`, `button` vs `div` + click), **labels** tied to controls, and **document outline** (heading levels) matter for a11y and SEO.
+- Prefer **native elements** before ARIA; when using ARIA, match **roles/states** to real behavior.

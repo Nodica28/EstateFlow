@@ -1,0 +1,8 @@
+---
+description: Minimal defaults - match repo tooling and keep diffs small
+alwaysApply: true
+---
+
+# Core
+
+Prefer the project's existing patterns, formatter, and linter when they conflict with other personal rules. Ship small, reviewable diffs (one concern per change unless the task explicitly spans layers).

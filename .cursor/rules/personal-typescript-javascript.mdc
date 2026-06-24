@@ -1,0 +1,13 @@
+---
+description: TypeScript and JavaScript language conventions
+globs: "**/*.{ts,tsx,mts,cts,js,jsx,mjs,cjs}"
+alwaysApply: false
+---
+
+# TypeScript and JavaScript
+
+- Default new application code to **TypeScript** (`.ts` / `.tsx`). Use **JavaScript** only where the repo already standardizes on it or for small config/scripts where TS adds no value.
+- Prefer **`interface` for object shapes** exported from modules; use **`type` for unions, mapped types, and utility compositions**. Avoid `enum`; use `as const` objects or unions.
+- **Avoid `any`**. Use `unknown` + narrowing, generics, or `zod` / schema inference when validation exists.
+- **Explicit return types** on exported functions and public APIs; infer locals unless clarity suffers.
+- Use **`import type`** for type-only imports. Keep side-effect imports minimal and intentional.
