@@ -196,7 +196,7 @@ function KanbanColumn({
   const { setNodeRef, isOver } = useDroppable({ id: status })
 
   return (
-    <div className="bg-muted/30 flex min-h-48 min-w-0 flex-1 flex-col rounded-lg border md:min-w-0">
+    <div className="bg-muted/30 flex min-h-0 min-w-0 flex-1 flex-col rounded-lg border md:h-full md:overflow-hidden">
       <div className="flex items-center justify-between border-b px-3 py-2">
         <span className="text-sm font-medium">{UNIT_STATUS_LABELS[status]}</span>
         <span className="text-muted-foreground text-xs tabular-nums">{units.length}</span>
@@ -204,7 +204,7 @@ function KanbanColumn({
       <div
         ref={setNodeRef}
         className={cn(
-          'flex min-h-32 min-w-0 flex-1 flex-col gap-2 overflow-x-hidden overflow-y-auto p-2 transition-colors',
+          'flex min-h-24 min-w-0 flex-1 flex-col gap-2 overflow-x-hidden overflow-y-auto p-2 transition-colors md:min-h-0',
           isOver && 'bg-primary/5 ring-primary/20 ring-2 ring-inset'
         )}
       >
@@ -288,7 +288,7 @@ export function UnitKanban({
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
     >
-      <div className="flex min-h-0 flex-1 flex-col gap-3 md:grid md:grid-cols-4 md:gap-3">
+      <div className="flex w-full min-w-0 flex-col gap-3 md:grid md:h-full md:min-h-0 md:flex-1 md:grid-cols-4 md:grid-rows-[minmax(0,1fr)] md:gap-3">
         {UNIT_STATUSES.map((status) => (
           <KanbanColumn
             key={status}
