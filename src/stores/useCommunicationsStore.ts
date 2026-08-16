@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { Communication, CommunicationType } from '@/types'
+import type { Communication } from '@/types'
 
 export interface CommWithMeta extends Communication {
   contact?: { first_name: string; last_name: string } | null

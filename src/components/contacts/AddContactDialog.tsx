@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Plus } from 'lucide-react'
@@ -39,7 +39,7 @@ export function AddContactDialog() {
     register,
     handleSubmit,
     setValue,
-    watch,
+    control,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
@@ -72,7 +72,8 @@ export function AddContactDialog() {
     handleClose()
   }
 
-  const contactType = watch('type')
+  // useWatch (not watch()) so React Compiler can memoize this component.
+  const contactType = useWatch({ control, name: 'type' })
 
   return (
     <>

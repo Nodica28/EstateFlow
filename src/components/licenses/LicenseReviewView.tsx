@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { format } from 'date-fns'
@@ -31,10 +31,15 @@ export function LicenseReviewView({ initialContacts }: { initialContacts: Contac
   const searchParams = useSearchParams()
   const { updateContact } = useContactStore()
   const [contacts, setContacts] = useState(initialContacts)
+  const [syncedTo, setSyncedTo] = useState(initialContacts)
 
-  useEffect(() => {
+  // Reset the local queue whenever the server sends a fresh list. Adjusting
+  // state during render rather than in an effect avoids the extra render pass
+  // a setState-in-effect would trigger.
+  if (syncedTo !== initialContacts) {
+    setSyncedTo(initialContacts)
     setContacts(initialContacts)
-  }, [initialContacts])
+  }
 
   const sortedContacts = useMemo(
     () => [...contacts].filter(isLicenseReviewQueueContact).sort(sortByCreatedDesc),

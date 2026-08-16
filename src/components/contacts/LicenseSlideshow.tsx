@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { resolveDriversLicenseViewUrl } from '@/lib/drivers-license-url'
@@ -29,13 +29,25 @@ export function LicenseSlideshow({ contact }: Props) {
   })
   const [resolving, setResolving] = useState(true)
 
+  // Collect the storage paths into one memoized object so the effect below has
+  // a statically analyzable dependency. Reading contact[field] inside the effect
+  // hides the real dependencies from the exhaustive-deps rule.
+  const paths = useMemo<Record<SlideField, string | null>>(
+    () => ({
+      id_front: contact.id_front ?? null,
+      id_back: contact.id_back ?? null,
+      id_selfie: contact.id_selfie ?? null,
+    }),
+    [contact.id_front, contact.id_back, contact.id_selfie]
+  )
+
   useEffect(() => {
     let cancelled = false
     const supabase = createClient()
 
     Promise.all(
       SLIDES.map(async ({ field }) => {
-        const path = contact[field] as string | null
+        const path = paths[field]
         const url = path ? await resolveDriversLicenseViewUrl(supabase, path) : null
         return [field, url] as const
       })
@@ -49,7 +61,7 @@ export function LicenseSlideshow({ contact }: Props) {
     return () => {
       cancelled = true
     }
-  }, [contact.id, contact.id_front, contact.id_back, contact.id_selfie])
+  }, [paths])
 
   const slide = SLIDES[current]
 
