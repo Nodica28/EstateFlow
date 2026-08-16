@@ -1,4 +1,4 @@
-# Real Estate CRM — Technical Specification
+# EstateFlow — Technical Specification
 
 **Version:** 1.0  
 **Date:** 2026-04-09  
@@ -8,7 +8,7 @@
 
 ## 1. Overview
 
-A custom CRM dashboard for real estate agents. Provides contact management, unit tracking, communication history, AI-assisted Q&A, and pipeline management through Kanban and table views. Contact data flows in via automated n8n webhooks.
+EstateFlow is a custom leasing and contact-management dashboard. Provides contact management, unit tracking, communication history, AI-assisted Q&A, and pipeline management through Kanban and table views. Contact data flows in via automated n8n webhooks.
 
 ---
 
@@ -378,17 +378,17 @@ POST /api/webhooks/n8n
 
 ```typescript
 const N8nContactPayload = z.object({
-    first_name: z.string(),
-    last_name: z.string(),
-    email: z.string().email().optional(),
-    phone: z.string().optional(),
-    source: z.string().optional(),
-    type: z
-        .enum(["prospective_tenant", "tenant", "owner", "vendor", "realtor"])
-        .default("prospective_tenant"),
-    notes: z.string().optional(),
-    unit_address: z.string().optional(), // auto-links or creates unit
-});
+  first_name: z.string(),
+  last_name: z.string(),
+  email: z.string().email().optional(),
+  phone: z.string().optional(),
+  source: z.string().optional(),
+  type: z
+    .enum(['prospective_tenant', 'tenant', 'owner', 'vendor', 'realtor'])
+    .default('prospective_tenant'),
+  notes: z.string().optional(),
+  unit_address: z.string().optional(), // auto-links or creates unit
+})
 ```
 
 ### Behavior
@@ -405,23 +405,23 @@ const N8nContactPayload = z.object({
 ```typescript
 // stores/useUIStore.ts
 interface UIStore {
-    sidebarCollapsed: boolean;
-    aiSidebarOpen: boolean;
-    activeView: "table" | "kanban";
-    selectedContactId: string | null;
-    toggleSidebar: () => void;
-    toggleAISidebar: () => void;
-    setView: (view: "table" | "kanban") => void;
-    setSelectedContact: (id: string | null) => void;
+  sidebarCollapsed: boolean
+  aiSidebarOpen: boolean
+  activeView: 'table' | 'kanban'
+  selectedContactId: string | null
+  toggleSidebar: () => void
+  toggleAISidebar: () => void
+  setView: (view: 'table' | 'kanban') => void
+  setSelectedContact: (id: string | null) => void
 }
 
 // stores/useContactStore.ts
 interface ContactStore {
-    contacts: Contact[];
-    filters: ContactFilters;
-    setContacts: (contacts: Contact[]) => void;
-    updateContactStatus: (id: string, status: string) => void;
-    setFilters: (filters: Partial<ContactFilters>) => void;
+  contacts: Contact[]
+  filters: ContactFilters
+  setContacts: (contacts: Contact[]) => void
+  updateContactStatus: (id: string, status: string) => void
+  setFilters: (filters: Partial<ContactFilters>) => void
 }
 ```
 
@@ -450,7 +450,7 @@ NEXT_PUBLIC_APP_URL=
 ## 14. Project Structure
 
 ```
-realestate/
+estateflow/
 ├── app/
 │   ├── (auth)/
 │   │   ├── login/page.tsx
@@ -551,7 +551,7 @@ Clients subscribe via `supabase.channel()` on mount and unsubscribe on unmount.
 
 - Additional contact types: Tenant, Owner, Vendor, Realtor
 - Real OCR-based identity verification (e.g., Stripe Identity, Onfido)
-- Email/SMS send from within the CRM (Resend, Twilio)
+- Email/SMS send from within EstateFlow (Resend, Twilio)
 - Reporting & analytics dashboard
 - Document management (lease uploads)
 - Mobile-responsive / PWA

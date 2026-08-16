@@ -63,7 +63,7 @@ export async function POST(request: Request) {
     ? buildContactContext(contactContext as Contact)
     : 'No specific contact is currently selected.'
 
-  const systemPrompt = `You are an AI assistant embedded in a real estate CRM dashboard. You help real estate agents manage their contacts, understand deal pipelines, and determine next steps.
+  const systemPrompt = `You are an AI assistant embedded in EstateFlow, a leasing and contact-management platform. You help agents manage their contacts, understand deal pipelines, and determine next steps.
 
 Current contact context:
 ${contactSection}
@@ -71,10 +71,10 @@ ${portfolioContext ? `\nPortfolio data:\n${portfolioContext}` : ''}
 
 Guidelines:
 - Be concise and actionable
-- Focus on practical next steps and real estate best practices
+- Focus on practical next steps and leasing best practices
 - When asked about a contact, reference their details from context
 - When asked about units, vacancies, rent, or pipeline, use the portfolio data above
-- If no contact is selected, answer general real estate CRM questions`
+- If no contact is selected, answer general questions about EstateFlow and the leasing pipeline`
 
   const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',

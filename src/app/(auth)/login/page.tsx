@@ -65,7 +65,7 @@ export default function LoginPage() {
     <Card className="w-full max-w-sm">
       <CardHeader>
         <CardTitle>Sign in</CardTitle>
-        <CardDescription>Enter your credentials to access your CRM dashboard</CardDescription>
+        <CardDescription>Enter your credentials to access EstateFlow</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

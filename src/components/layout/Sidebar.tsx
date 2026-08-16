@@ -80,7 +80,7 @@ export function Sidebar() {
       {/* Logo */}
       <div className="flex h-14 items-center border-b px-3">
         {!sidebarCollapsed && (
-          <span className="text-primary text-sm font-semibold tracking-tight">RealEstate CRM</span>
+          <span className="text-primary text-sm font-semibold tracking-tight">EstateFlow</span>
         )}
         {sidebarCollapsed && <Building2 className="text-primary mx-auto h-5 w-5" />}
       </div>

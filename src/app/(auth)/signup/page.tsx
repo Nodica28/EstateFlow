@@ -64,7 +64,7 @@ export default function SignupPage() {
     <Card className="w-full max-w-sm">
       <CardHeader>
         <CardTitle>Create an account</CardTitle>
-        <CardDescription>Start managing your real estate contacts</CardDescription>
+        <CardDescription>Start managing your contacts with EstateFlow</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

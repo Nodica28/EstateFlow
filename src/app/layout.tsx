@@ -9,8 +9,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'RealEstate CRM',
-  description: 'Custom CRM dashboard for real estate agents',
+  title: 'EstateFlow',
+  description: 'EstateFlow — leasing and contact management',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
